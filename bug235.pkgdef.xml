@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE SystemDefinition [
+<!ELEMENT SystemDefinition ( systemModel )>
+<!ATTLIST SystemDefinition
+  name CDATA #REQUIRED
+  schema CDATA #REQUIRED
+>
+<!-- all paths are relative to the environment variable specified by the root attribute, or SOURCEROOT if not.  -->
+
+<!-- System Model Section of DTD -->
+<!ELEMENT systemModel (layer+)>
+
+<!ELEMENT layer (block* | collection*)*>
+<!-- Kernel Services, Base Services, OS Services, Etc -->
+<!ATTLIST layer
+  name CDATA #REQUIRED
+  long-name CDATA #IMPLIED
+  levels NMTOKENS #IMPLIED
+  span CDATA #IMPLIED
+>
+
+<!ELEMENT block (subblock* | collection*)*>
+ <!-- Generic OS services, Comms Services, etc -->
+<!ATTLIST block
+  levels NMTOKENS #IMPLIED
+  span CDATA #IMPLIED
+  level NMTOKEN #IMPLIED
+  name CDATA #REQUIRED
+  long-name CDATA #IMPLIED
+>
+
+<!ELEMENT subblock (collection)*>
+<!-- Cellular Baseband Services, Networking Services, etc -->
+<!ATTLIST subblock
+  name CDATA #REQUIRED
+  long-name CDATA #IMPLIED
+>
+
+<!ELEMENT collection (component)*>
+<!-- Screen Driver, Content Handling, etc -->
+<!ATTLIST collection
+  name CDATA #REQUIRED
+  long-name CDATA #IMPLIED
+  level NMTOKEN #IMPLIED
+>
+
+<!ELEMENT component (unit)*>
+<!-- contains units or is a  package or prebuilt -->
+<!ATTLIST component
+  name CDATA #REQUIRED
+  long-name CDATA #IMPLIED
+  deprecated CDATA #IMPLIED
+  introduced CDATA #IMPLIED
+  contract CDATA #IMPLIED
+  plugin (Y|N) "N"
+  filter CDATA #IMPLIED
+  class NMTOKENS #IMPLIED
+  supports CDATA #IMPLIED
+  purpose ( optional | mandatory | development ) "optional"
+>
+
+<!ELEMENT unit EMPTY >
+<!-- must be buildable (bld.inf) -->
+<!-- bldFile  may someday be removed in favour of mrp -->
+<!ATTLIST unit
+  mrp CDATA #IMPLIED
+  filter CDATA #IMPLIED
+  bldFile CDATA #IMPLIED
+  root CDATA #IMPLIED
+  version NMTOKEN #IMPLIED
+  prebuilt NMTOKEN #IMPLIED
+  late (Y|N) #IMPLIED
+  priority CDATA #IMPLIED
+>
+]>
+<SystemDefinition schema="2.0.1" name="Nokia Graphics Adaptation">
+<systemModel>
+<layer name="anonymous">
+<block name="graphics.nokia" long-name="Nokia Graphics Adaptation" levels="rendering composition">
+<collection name="graphicscompositionref" long-name="Graphics Composition Reference" level="composition">
+<component name="openwfcompositionengine" long-name="OpenWF-C Reference" introduced="^3" purpose="development">
+<unit bldFile="graphics.nokia/graphicscompositionref/openwfcompositionengine/group"/>
+</component>
+<component name="openwfc_ri_displaychannel" long-name="OpenWF-C RI Display Channel Adapter" introduced="^4" purpose="development">
+<unit bldFile="graphics.nokia/graphicscompositionref/openwfc_ri_displaychannel/group"/>
+</component>
+<component name="openwfc_ri_displayupdater" long-name="OpenWF-C RI Display Updater Adapter" introduced="^4" purpose="development">
+<unit bldFile="graphics.nokia/graphicscompositionref/openwfc_ri_displayupdater/group"/>
+</component>
+<component name="symbianstreamref" long-name="Symbian Stream Reference" introduced="^4">
+<unit bldFile="graphics.nokia/graphicscompositionref/symbianstreamref/group"/>
+</component>
+<component name="surfacemgrplatsim" long-name="PlatSim Surface Manager" introduced="^4">
+<unit bldFile="graphics.nokia/graphicscompositionref/surfacemgrplatsim/group"/>
+</component>
+<component name="surfacemgrsyborg" long-name="Syborg Surface Manager" introduced="^4">
+<unit bldFile="graphics.nokia/graphicscompositionref/surfacemgrsyborg/group"/>
+</component>
+<component name="surfacemgrcommon" long-name="Surface Manager Common" introduced="^4"/>
+<component name="surfacemgrref" long-name="Surface Manager Reference" introduced="^4">
+<unit bldFile="graphics.nokia/graphicscompositionref/surfacemgrref/group"/>
+</component>
+<component name="surfaceupdateref" long-name="Surface Update Server Reference" introduced="^4">
+<unit bldFile="graphics.nokia/graphicscompositionref/surfaceupdateref/group"/>
+</component>
+</collection>
+<collection name="graphicsrenderingref" long-name="Graphics Rendering Reference" level="rendering">
+<component name="eglrefimpl" long-name="EGL Reference" purpose="development">
+<unit bldFile="graphics.nokia/graphicsrenderingref/eglrefimpl/group"/>
+</component>
+<component name="opengles_stub" long-name="OpenGL ES Stub Implementation" purpose="development" filter="sf_build">
+<unit bldFile="graphics.nokia/graphicsrenderingref/opengles_stub/group"/>
+</component>
+<component name="sfopenvg" long-name="SF OpenVG Reference Implementation" purpose="development" filter="sf_build">
+<unit bldFile="graphics.nokia/graphicsrenderingref/sfopenvg/group"/>
+</component>
+<component name="graphicsresourceimplementation" long-name="Graphics Resource Reference">
+<unit bldFile="graphics.nokia/graphicsrenderingref/graphicsresourceimplementation/group"/>
+</component>
+</collection>
+</block>
+</layer>
+</systemModel>
+</SystemDefinition>

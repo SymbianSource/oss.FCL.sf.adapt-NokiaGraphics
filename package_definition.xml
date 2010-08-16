@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SystemDefinition schema="3.0.0">
+  <package id="graphics.nokia" name="Nokia Graphics Adaptation" levels="rendering composition" version="4.0.0">
+    <meta rel="License">
+      <license type="EPL"><supplier>Nokia</supplier></license>
+    </meta>
+    <collection id="graphicscompositionref" name="Graphics Composition Reference" level="composition">
+      <component id="openwfcompositionengine" name="OpenWF-C Reference" introduced="^3" purpose="development">
+        <meta rel="License">
+          <license type="other">
+            <supplier>Khronos Group</supplier>
+            <description>Khronos Free Use License</description>
+            <notes>Distribution policy ID 1436</notes>
+          </license>
+        </meta>
+        <unit bldFile="graphicscompositionref/openwfcompositionengine/group"/>
+      </component>
+      <component id="openwfc_ri_displaychannel" name="OpenWF-C RI Display Channel Adapter" introduced="^4" purpose="development">
+        <meta rel="License">
+          <license type="other">
+            <supplier>Khronos Group</supplier>
+            <description>Khronos Free Use License</description>
+            <notes>Distribution policy ID 1436</notes>
+          </license>
+        </meta>
+        <unit bldFile="graphicscompositionref/openwfc_ri_displaychannel/group"/>
+      </component>
+      <component id="openwfc_ri_displayupdater" name="OpenWF-C RI Display Updater Adapter" introduced="^4" purpose="development">
+        <meta rel="License">
+          <license type="other">
+            <supplier>Khronos Group</supplier>
+            <description>Khronos Free Use License</description>
+            <notes>Distribution policy ID 1436</notes>
+          </license>
+        </meta>
+        <unit bldFile="graphicscompositionref/openwfc_ri_displayupdater/group"/>
+      </component>
+      <component id="symbianstreamref" name="Symbian Stream Reference" introduced="^4">
+        <unit bldFile="graphicscompositionref/symbianstreamref/group"/>
+      </component>
+      <component id="surfacemgrplatsim" name="PlatSim Surface Manager" introduced="^4">
+        <unit bldFile="graphicscompositionref/surfacemgrplatsim/group"/>
+      </component>
+      <component id="surfacemgrsyborg" name="Syborg Surface Manager" introduced="^4">
+        <unit bldFile="graphicscompositionref/surfacemgrsyborg/group"/>
+      </component>
+      <component id="surfacemgrcommon" name="Surface Manager Common" introduced="^4">
+        <unit base="graphicscompositionref/surfacemgrcommon"/>
+      </component>
+      <component id="surfacemgrref" name="Surface Manager Reference" introduced="^4">
+        <unit bldFile="graphicscompositionref/surfacemgrref/group"/>
+      </component>
+      <component id="surfaceupdateref" name="Surface Update Server Reference" introduced="^4">
+        <unit bldFile="graphicscompositionref/surfaceupdateref/group"/>
+      </component>
+    </collection>
+    <collection id="graphicsrenderingref" name="Graphics Rendering Reference" level="rendering">
+      <component id="eglrefimpl" name="EGL Reference" purpose="development">
+        <unit bldFile="graphicsrenderingref/eglrefimpl/group"/>
+      </component>
+      <component id="opengles_stub" name="OpenGL ES Stub Implementation" purpose="development" filter="sf_build">
+        <unit bldFile="graphicsrenderingref/opengles_stub/group"/>
+      </component>
+      <component id="sfopenvg" name="SF OpenVG Reference Implementation" purpose="development" filter="sf_build">
+        <unit bldFile="graphicsrenderingref/sfopenvg/group"/>
+      </component>
+      <component id="graphicsresourceimplementation" name="Graphics Resource Reference">
+        <unit bldFile="graphicsrenderingref/graphicsresourceimplementation/group"/>
+      </component>
+    </collection>
+  </package>
+</SystemDefinition>
